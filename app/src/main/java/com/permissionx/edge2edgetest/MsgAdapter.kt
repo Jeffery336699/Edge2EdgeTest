@@ -2,6 +2,7 @@ package com.permissionx.edge2edgetest
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -23,7 +24,12 @@ class MsgAdapter(private val msgList: List<Msg>) : RecyclerView.Adapter<MsgViewH
     override fun onBindViewHolder(holder: MsgViewHolder, position: Int) {
         val msg = msgList[position]
         when (holder) {
-            is LeftViewHolder -> holder.leftMsg.text = msg.content
+            is LeftViewHolder -> {
+                holder.leftMsg.text = msg.content
+                holder.leftMsg.setOnClickListener {
+                    Toast.makeText(it.context, "${msg.content}", Toast.LENGTH_SHORT).show()
+                }
+            }
             is RightViewHolder -> holder.rightMsg.text = msg.content
          }
     }
